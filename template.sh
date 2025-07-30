@@ -1,6 +1,7 @@
 mkdir -p controllers
 mkdir -p routes
-mkdir -p middlewares
+mkdir -p migrations
+mkdir -p models
 mkdir -p db
 mkdir -p services
 mkdir -p utils
@@ -9,9 +10,10 @@ touch controllers/eventController.js
 touch routes/events.js
 touch routes/users.js
 touch controllers/userController.js
-touch services/eventService.js
-touch services/userService.js
-touch middlewares/validate.js
-touch utils/sortEvents.js
+touch models/eventModel.js
+touch models/userModel.js
+touch utils/errors.js
+touch utils/validators.js
 touch .env
+touch app.js
 echo "directory and files created succesfully"

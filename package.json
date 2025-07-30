@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "migrate": "psql -U postgres -d eventdb -f migrations/create_registrations.sql",
+    "migrate:down": "psql -U postgres -d eventdb -c \"DROP TABLE IF EXISTS registrations;\""
   },
   "keywords": [],
   "author": "",
@@ -13,6 +17,9 @@
   "dependencies": {
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "pg": "^8.16.3"
+    "joi": "^17.13.3",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.3",
+    "uuid": "^11.1.0"
   }
 }
