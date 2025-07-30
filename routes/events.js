@@ -1,11 +1,10 @@
-const router = require('express').Router();
-const ctrl   = require('../controllers/eventController');
-
+import ctrl from '../controllers/eventController.js';
+import express from 'express';
+const router = express.Router();
 router.post('/',        ctrl.createEvent);
 router.get('/:id',      ctrl.getEvent);
 router.post('/register',ctrl.register);
 router.post('/cancel',  ctrl.cancel);
 router.get('/',         ctrl.listUpcoming);
 router.get('/:id/stats',ctrl.stats);
-
-module.exports = router;
+export default router;

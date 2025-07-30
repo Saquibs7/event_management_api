@@ -1,7 +1,6 @@
-// src/models/eventModel.js
-const pool = require('../config/db');
+import pool from '../db';
 
-module.exports = {
+export default {
   async create(event) {
     const { title, event_time, location, capacity } = event;
     const res = await pool.query(

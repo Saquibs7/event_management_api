@@ -1,11 +1,9 @@
-const { AppError } = require('../utils/errors');
-const eventModel   = require('../models/eventModel');
-const pool         = require('../config/db');
+import { AppError } from '../utils/error';
+import eventModel from '../models/eventModel';
+import pool from '../db';
 
-// Create Event
 exports.createEvent = async (req, res, next) => {
   try {
-    // validate payload
     const { error, value } = require('../utils/validators').eventSchema.validate(req.body);
     if (error) throw new AppError(error.details[0].message, 422);
 
@@ -28,14 +26,14 @@ exports.getEvent = async (req, res, next) => {
   }
 };
 
-// Register for Event
+// Register anEvent
 exports.register = async (req, res, next) => {
   const client = await pool.connect();
   try {
     const { userId, eventId } = req.body;
     await client.query('BEGIN');
 
-    // 1) Check event exists & not past
+    // 1) Check event exists and is not in the past
     const eventRes = await client.query(`SELECT capacity, event_time FROM events WHERE id=$1 FOR UPDATE`, [eventId]);
     if (!eventRes.rowCount) throw new AppError('Event not found', 404);
     const { capacity, event_time } = eventRes.rows[0];

@@ -1,18 +1,14 @@
-require('dotenv').config();
-const express = require('express');
-const { errorHandler } = require('./utils/errors');
-
-const eventRoutes = require('./routes/eventRoutes');
-const userRoutes  = require('./routes/userRoutes');
-
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import { errorHandler } from './utils/errorHandler.js';
+import eventRoutes from './routes/events.js';
+import userRoutes from './routes/users.js';
 const app = express();
 app.use(express.json());
-
-// routes
+app.use(express.urlencoded({ extended: true }));
 app.use('/api/events', eventRoutes);
 app.use('/api/users', userRoutes);
-
-// global error handler
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 4000;

@@ -1,7 +1,5 @@
-// src/models/userModel.js
-const pool = require('../config/db');
-
-module.exports = {
+import { Pool } from '../db/index.js';
+export default {
   async create(name, email) {
     const res = await pool.query(
       `INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *`,

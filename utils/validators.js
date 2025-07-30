@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from "joi";
 
 const eventSchema = Joi.object({
   title: Joi.string().max(200).required(),
@@ -6,5 +6,4 @@ const eventSchema = Joi.object({
   location: Joi.string().max(200).required(),
   capacity: Joi.number().integer().min(1).max(1000).required()
 });
-
-module.exports = { eventSchema };
+export { eventSchema };

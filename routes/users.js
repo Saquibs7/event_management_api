@@ -1,9 +1,9 @@
-// src/routes/userRoutes.js
-const router = require('express').Router();
-const ctrl = require('../controllers/userController');
+import ctrl from '../controllers/userController.js';
+import express from 'express';
+const router = express.Router();
 
-router.post('/', ctrl.createUser);               // Create user
-router.get('/:id', ctrl.getUser);                // Get user details
-router.get('/:id/events', ctrl.getUserEvents);   // Get user's registered events
+router.post('/', ctrl.createUser);            
+router.get('/:id', ctrl.getUser);                
+router.get('/:id/events', ctrl.getUserEvents);   
 
-module.exports = router;
+export default router;

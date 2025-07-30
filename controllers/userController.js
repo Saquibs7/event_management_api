@@ -1,8 +1,7 @@
-// src/controllers/userController.js
-const { AppError } = require('../utils/errors');
-const userModel = require('../models/userModel');
+import { AppError } from '../utils/error';
+import userModel from '../models/userModel';
 
-// Create new user
+// Create a new user
 exports.createUser = async (req, res, next) => {
   try {
     const { name, email } = req.body;
@@ -14,13 +13,13 @@ exports.createUser = async (req, res, next) => {
     res.status(201).json({ userId: user.id });
   } catch (err) {
     if (err.code === '23505') {
-      return next(new AppError('Email already exists', 409)); // unique violation
+      return next(new AppError('Email already exists', 409));
     }
     next(err);
   }
 };
 
-// Get user info
+// Get user detail
 exports.getUser = async (req, res, next) => {
   try {
     const user = await userModel.findById(req.params.id);
@@ -31,7 +30,7 @@ exports.getUser = async (req, res, next) => {
   }
 };
 
-// Get events user registered for
+// Get events where user is registered
 exports.getUserEvents = async (req, res, next) => {
   try {
     const user = await userModel.findById(req.params.id);
